@@ -50,6 +50,7 @@ function draw() {
   marcaPonto();
   preload();
   //pensar em como fazer o oponente perder
+  calculaChanceDeErrar();
 }
 
 function mostraBolinha() {
@@ -96,8 +97,9 @@ function verificaColisaoRaquete(x, y) {
 }
 
 function movimentaRaqueteOponente() {
-  velocidadeYOponente = yBolinha - yRaqueteOponente - raqueteComprimento / 2 - 30;
-  yRaqueteOponente += velocidadeYOponente
+  velocidadeYOponente = yBolinha -yRaqueteOponente - raqueteComprimento / 2 - 30;
+  yRaqueteOponente += velocidadeYOponente + chanceDeErrar;
+  calculaChanceDeErrar();
 }
 
 function incluiPlacar() {
@@ -130,4 +132,16 @@ function preload() {
   raquetada = loadSound("raquetada.mp3");
 }
 
-
+function calculaChanceDeErrar() {
+  if (pontosDoOponente >= meusPontos) {
+    chanceDeErrar += 1;
+    if (chanceDeErrar >= 39){
+    chanceDeErrar = 40;
+    }
+  } else {
+    chanceDeErrar -= 1;
+    if (chanceDeErrar <= 35){
+    chanceDeErrar = 35;
+    }
+  }
+}
