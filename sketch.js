@@ -23,7 +23,7 @@ var colidiu = false;
 
 //placar do jogo
 var meusPontos = 0;
-var pontosDoOpon
+var pontosDoOponente = 0;
 
 //adcionando sons no jogo
 var raquetada;
@@ -32,7 +32,8 @@ var trilhaSonora;
 
 function setup() {
   createCanvas(600, 400);
-  trilhaSonora.loop();
+  //desativei o som da trilha sonora
+  //trilhaSonora.loop();
 }
 
 function draw() {
@@ -48,9 +49,9 @@ function draw() {
   verificaColisaoRaquete(xRaqueteOponente, yRaqueteOponente);
   incluiPlacar();
   marcaPonto();
-  preload();
+  //preload();
   //pensar em como fazer o oponente perder
-  calculaChanceDeErrar();
+  //calculaChanceDeErrar();
 }
 
 function mostraBolinha() {
@@ -98,8 +99,8 @@ function verificaColisaoRaquete(x, y) {
 
 function movimentaRaqueteOponente() {
   velocidadeYOponente = yBolinha -yRaqueteOponente - raqueteComprimento / 2 - 30;
-  yRaqueteOponente += velocidadeYOponente + chanceDeErrar;
-  calculaChanceDeErrar();
+  yRaqueteOponente += velocidadeYOponente; //chanceDeErrar;
+  //calculaChanceDeErrar();
 }
 
 function incluiPlacar() {
@@ -127,11 +128,11 @@ function marcaPonto() {
 }
 
 function preload() {
-  trilhaSonora = loadSound("trilha.mp3");
-  ponto = loadSound("ponto.mp3");
-  raquetada = loadSound("raquetada.mp3");
+  trilhaSonora = loadSound("sons/trilha.mp3");
+  ponto = loadSound("sons/ponto.mp3");
+  raquetada = loadSound("sons/raquetada.mp3");
 }
-
+//vou dar uma olhada nessa funcao depois
 function calculaChanceDeErrar() {
   if (pontosDoOponente >= meusPontos) {
     chanceDeErrar += 1;
